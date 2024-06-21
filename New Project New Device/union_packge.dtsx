@@ -11,8 +11,8 @@
   DTS:LocaleID="16393"
   DTS:ObjectName="union_packge"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{FF32AAB8-0FA3-433F-B461-5243B6223DF4}">
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{020DD08C-3F33-43B2-B79E-217D35417F1D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -26,6 +26,18 @@
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=DESKTOP-R91A96N;Initial Catalog=destination_database;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-union_packge-{A2437FA2-AB72-4BEB-B633-C760D457AF53}DESKTOP-R91A96N.destination_database;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{981702E2-1C41-4817-B7D9-A4E3E6CC6C7E}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\Admin\Desktop\Shayona_Sales_Analysis.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -169,17 +181,134 @@
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[python_master]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{DBDF1C62-1319-4C0D-BC24-07F5833969E1}"
+      DTS:ObjectName="python_master">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="D:\python_master" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[python_master 1]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{921C500C-3CDC-4FC7-B124-819E8E246291}"
+      DTS:ObjectName="python_master 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="D:\python_master" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[union_packge.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{313B67A8-2C6A-42E3-9CBA-F4819E50A602}"
+      DTS:ObjectName="union_packge.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\Admin\source\repos\New Project New Device\New Project New Device\union_packge.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Data Flow Task"
+      DTS:refId="Package\backup package"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{DEF2BB67-F2ED-482F-AC13-895A137940A0}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="backup package"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOverwriteDestFile="True"
+          TaskSourcePath="{313B67A8-2C6A-42E3-9CBA-F4819E50A602}"
+          TaskDestinationPath="{921C500C-3CDC-4FC7-B124-819E8E246291}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\chnage ekta to harshil"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{72621559-FFE3-4F8D-86C0-2CFF5F069373}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="chnage ekta to harshil"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A2437FA2-AB72-4BEB-B633-C760D457AF53}"
+          SQLTask:SqlStatementSource="update [emp_data] set name='harshil' where id=8" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\delete emp_data"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2224B54E-FB3F-4E07-91FF-488CB34C479F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="delete emp_data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A2437FA2-AB72-4BEB-B633-C760D457AF53}"
+          SQLTask:SqlStatementSource="delete from [emp_data]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\delete shayona table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C21C1012-F16F-44A4-9261-65F43D7EABC9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="delete shayona table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A2437FA2-AB72-4BEB-B633-C760D457AF53}"
+          SQLTask:SqlStatementSource="delete from shayona_data" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute Process Task"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:Description="Execute Process Task"
+      DTS:DTSID="{EDEF2ED2-FCDD-4308-93A8-BA7B115BBEB7}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute Process Task"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="C:\Users\Admin\Desktop\check_internet_connection.bat" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\flat fies to db using union"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{9879FA48-8B76-4965-9D79-076A2C72EE46}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Data Flow Task"
+      DTS:ObjectName="flat fies to db using union"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -187,7 +316,7 @@
           version="1">
           <components>
             <component
-              refId="Package\Data Flow Task\Flat File Source"
+              refId="Package\flat fies to db using union\Flat File Source"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
@@ -207,25 +336,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\Flat File Source.Connections[FlatFileConnection]"
+                  refId="Package\flat fies to db using union\Flat File Source.Connections[FlatFileConnection]"
                   connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
                   connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output]"
+                  refId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[id]"
+                      refId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].Columns[id]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[id]"
+                      externalMetadataColumnId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[id]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[id]"
+                      lineageId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].Columns[id]"
                       name="id"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -240,14 +369,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[name]"
+                      refId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].Columns[name]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[name]"
+                      externalMetadataColumnId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[name]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[name]"
+                      lineageId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].Columns[name]"
                       name="name"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -262,14 +391,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[age]"
+                      refId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].Columns[age]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[age]"
+                      externalMetadataColumnId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[age]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[age]"
+                      lineageId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].Columns[age]"
                       name="age"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -287,19 +416,19 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[id]"
+                      refId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[id]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="id" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[name]"
+                      refId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[name]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="name" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[age]"
+                      refId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[age]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -307,27 +436,27 @@
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output]"
+                  refId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      refId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       codePage="1252"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -336,7 +465,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Flat File Source 1"
+              refId="Package\flat fies to db using union\Flat File Source 1"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
@@ -356,25 +485,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\Flat File Source 1.Connections[FlatFileConnection]"
+                  refId="Package\flat fies to db using union\Flat File Source 1.Connections[FlatFileConnection]"
                   connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager 1]"
                   connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager 1]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output]"
+                  refId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].Columns[id]"
+                      refId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].Columns[id]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[id]"
+                      externalMetadataColumnId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[id]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].Columns[id]"
+                      lineageId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].Columns[id]"
                       name="id"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -389,14 +518,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].Columns[name]"
+                      refId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].Columns[name]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[name]"
+                      externalMetadataColumnId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[name]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].Columns[name]"
+                      lineageId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].Columns[name]"
                       name="name"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -411,14 +540,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].Columns[age]"
+                      refId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].Columns[age]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[age]"
+                      externalMetadataColumnId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[age]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].Columns[age]"
+                      lineageId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].Columns[age]"
                       name="age"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -436,19 +565,19 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[id]"
+                      refId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[id]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="id" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[name]"
+                      refId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[name]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="name" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[age]"
+                      refId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[age]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -456,27 +585,27 @@
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Error Output]"
+                  refId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      refId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       codePage="1252"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -485,7 +614,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Flat File Source 2"
+              refId="Package\flat fies to db using union\Flat File Source 2"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
@@ -505,25 +634,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\Flat File Source 2.Connections[FlatFileConnection]"
+                  refId="Package\flat fies to db using union\Flat File Source 2.Connections[FlatFileConnection]"
                   connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager 2]"
                   connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager 2]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output]"
+                  refId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].Columns[id]"
+                      refId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].Columns[id]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].ExternalColumns[id]"
+                      externalMetadataColumnId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].ExternalColumns[id]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].Columns[id]"
+                      lineageId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].Columns[id]"
                       name="id"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -538,14 +667,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].Columns[name]"
+                      refId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].Columns[name]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].ExternalColumns[name]"
+                      externalMetadataColumnId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].ExternalColumns[name]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].Columns[name]"
+                      lineageId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].Columns[name]"
                       name="name"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -560,14 +689,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].Columns[age]"
+                      refId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].Columns[age]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].ExternalColumns[age]"
+                      externalMetadataColumnId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].ExternalColumns[age]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].Columns[age]"
+                      lineageId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].Columns[age]"
                       name="age"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -585,19 +714,19 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].ExternalColumns[id]"
+                      refId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].ExternalColumns[id]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="id" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].ExternalColumns[name]"
+                      refId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].ExternalColumns[name]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="name" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].ExternalColumns[age]"
+                      refId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].ExternalColumns[age]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -605,27 +734,27 @@
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Error Output]"
+                  refId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      refId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       codePage="1252"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -634,7 +763,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\OLE DB Destination"
+              refId="Package\flat fies to db using union\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -691,7 +820,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                  refId="Package\flat fies to db using union\OLE DB Destination.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[DESKTOP-R91A96N.destination_database]"
                   connectionManagerRefId="Package.ConnectionManagers[DESKTOP-R91A96N.destination_database]"
                   description="The OLE DB runtime connection used to access the database."
@@ -699,53 +828,53 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  refId="Package\flat fies to db using union\OLE DB Destination.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id]"
+                      refId="Package\flat fies to db using union\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="id"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[id]" />
+                      externalMetadataColumnId="Package\flat fies to db using union\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      lineageId="Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[id]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[name]"
+                      refId="Package\flat fies to db using union\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[name]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="name"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[name]" />
+                      externalMetadataColumnId="Package\flat fies to db using union\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      lineageId="Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[name]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[age]"
+                      refId="Package\flat fies to db using union\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[age]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="age"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[age]"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[age]" />
+                      externalMetadataColumnId="Package\flat fies to db using union\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[age]"
+                      lineageId="Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[age]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      refId="Package\flat fies to db using union\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="id" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      refId="Package\flat fies to db using union\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="name" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[age]"
+                      refId="Package\flat fies to db using union\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[age]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -755,22 +884,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\flat fies to db using union\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\flat fies to db using union\OLE DB Destination.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\flat fies to db using union\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\flat fies to db using union\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\flat fies to db using union\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\flat fies to db using union\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -779,7 +908,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Union All"
+              refId="Package\flat fies to db using union\Union All"
               componentClassID="Microsoft.UnionAll"
               contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
@@ -787,165 +916,165 @@
               version="1">
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1]"
+                  refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 1]"
                   name="Union All Input 1">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[id]"
+                      refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 1].Columns[id]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="id"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[id]">
+                      lineageId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].Columns[id]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[id]}</property>
+                          name="OutputColumnLineageID">#{Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[id]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[name]"
+                      refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 1].Columns[name]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="name"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[name]">
+                      lineageId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].Columns[name]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[name]}</property>
+                          name="OutputColumnLineageID">#{Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[name]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[age]"
+                      refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 1].Columns[age]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="age"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[age]">
+                      lineageId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output].Columns[age]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[age]}</property>
+                          name="OutputColumnLineageID">#{Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[age]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2]"
+                  refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 2]"
                   hasSideEffects="true"
                   name="Union All Input 2">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[id]"
+                      refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 2].Columns[id]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="id"
-                      lineageId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].Columns[id]">
+                      lineageId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].Columns[id]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[id]}</property>
+                          name="OutputColumnLineageID">#{Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[id]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[name]"
+                      refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 2].Columns[name]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="name"
-                      lineageId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].Columns[name]">
+                      lineageId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].Columns[name]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[name]}</property>
+                          name="OutputColumnLineageID">#{Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[name]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[age]"
+                      refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 2].Columns[age]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="age"
-                      lineageId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output].Columns[age]">
+                      lineageId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output].Columns[age]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[age]}</property>
+                          name="OutputColumnLineageID">#{Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[age]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\Data Flow Task\Union All.Inputs[Union All Input 3]"
+                  refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 3]"
                   hasSideEffects="true"
                   name="Union All Input 3">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 3].Columns[id]"
+                      refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 3].Columns[id]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="id"
-                      lineageId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].Columns[id]">
+                      lineageId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].Columns[id]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[id]}</property>
+                          name="OutputColumnLineageID">#{Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[id]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 3].Columns[name]"
+                      refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 3].Columns[name]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="name"
-                      lineageId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].Columns[name]">
+                      lineageId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].Columns[name]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[name]}</property>
+                          name="OutputColumnLineageID">#{Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[name]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 3].Columns[age]"
+                      refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 3].Columns[age]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="age"
-                      lineageId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output].Columns[age]">
+                      lineageId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output].Columns[age]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[age]}</property>
+                          name="OutputColumnLineageID">#{Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[age]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\Data Flow Task\Union All.Inputs[Union All Input 4]"
+                  refId="Package\flat fies to db using union\Union All.Inputs[Union All Input 4]"
                   dangling="true"
                   hasSideEffects="true"
                   name="Union All Input 4">
@@ -954,29 +1083,29 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1]"
+                  refId="Package\flat fies to db using union\Union All.Outputs[Union All Output 1]"
                   name="Union All Output 1">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[id]"
+                      refId="Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[id]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[id]"
+                      lineageId="Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[id]"
                       name="id" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[name]"
+                      refId="Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[name]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[name]"
+                      lineageId="Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[name]"
                       name="name" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[age]"
+                      refId="Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[age]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[age]"
+                      lineageId="Package\flat fies to db using union\Union All.Outputs[Union All Output 1].Columns[age]"
                       name="age" />
                   </outputColumns>
                   <externalMetadataColumns />
@@ -986,30 +1115,720 @@
           </components>
           <paths>
             <path
-              refId="Package\Data Flow Task.Paths[Flat File Source Output]"
-              endId="Package\Data Flow Task\Union All.Inputs[Union All Input 1]"
+              refId="Package\flat fies to db using union.Paths[Flat File Source Output]"
+              endId="Package\flat fies to db using union\Union All.Inputs[Union All Input 1]"
               name="Flat File Source Output"
-              startId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output]" />
+              startId="Package\flat fies to db using union\Flat File Source.Outputs[Flat File Source Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Flat File Source Output1]"
-              endId="Package\Data Flow Task\Union All.Inputs[Union All Input 2]"
+              refId="Package\flat fies to db using union.Paths[Flat File Source Output1]"
+              endId="Package\flat fies to db using union\Union All.Inputs[Union All Input 2]"
               name="Flat File Source Output"
-              startId="Package\Data Flow Task\Flat File Source 1.Outputs[Flat File Source Output]" />
+              startId="Package\flat fies to db using union\Flat File Source 1.Outputs[Flat File Source Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Flat File Source Output2]"
-              endId="Package\Data Flow Task\Union All.Inputs[Union All Input 3]"
+              refId="Package\flat fies to db using union.Paths[Flat File Source Output2]"
+              endId="Package\flat fies to db using union\Union All.Inputs[Union All Input 3]"
               name="Flat File Source Output"
-              startId="Package\Data Flow Task\Flat File Source 2.Outputs[Flat File Source Output]" />
+              startId="Package\flat fies to db using union\Flat File Source 2.Outputs[Flat File Source Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Union All Output 1]"
-              endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              refId="Package\flat fies to db using union.Paths[Union All Output 1]"
+              endId="Package\flat fies to db using union\OLE DB Destination.Inputs[OLE DB Destination Input]"
               name="Union All Output 1"
-              startId="Package\Data Flow Task\Union All.Outputs[Union All Output 1]" />
+              startId="Package\flat fies to db using union\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\shayona to db"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{223436E3-D35B-4D96-A3F3-DA154ECC8489}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="shayona to db"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\shayona to db\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\shayona to db\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\shayona to db\Conditional Split.Inputs[Conditional Split Input].Columns[Month &amp; Year]"
+                      cachedDataType="date"
+                      cachedName="Month &amp; Year"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Month &amp; Year]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\shayona to db\Conditional Split.Outputs[current month]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="current month"
+                  synchronousInputId="Package\shayona to db\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[MONTH](#{Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Month &amp; Year]}) == [MONTH]([GETDATE]())</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">MONTH([Month &amp; Year]) == MONTH(GETDATE())</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\shayona to db\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\shayona to db\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\shayona to db\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\shayona to db\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\shayona to db\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\shayona to db\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\shayona to db\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\shayona to db\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\shayona to db\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Product$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\shayona to db\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Month &amp; Year]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Month &amp; Year]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Month &amp; Year]"
+                      name="Month &amp; Year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Product]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Product]"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Product]"
+                      name="Product"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Date Hierarchy - QuarterName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Date Hierarchy - QuarterName]"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Date Hierarchy - QuarterName]"
+                      name="Date Hierarchy - QuarterName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Store]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Store]"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Store]"
+                      name="Store"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Year]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Year]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Year]"
+                      name="Year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Event]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Event]"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Event]"
+                      name="Event"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Mandir Group]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Mandir Group]"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Mandir Group]"
+                      name="Mandir Group"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Region]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Region]"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Region]"
+                      name="Region"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Category]"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Category]"
+                      name="Category"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Product Category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Product Category]"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Product Category]"
+                      name="Product Category"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Sum of Quantity]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sum of Quantity]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Sum of Quantity]"
+                      name="Sum of Quantity"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Month &amp; Year]"
+                      dataType="date"
+                      name="Month &amp; Year" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Product]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Date Hierarchy - QuarterName]"
+                      dataType="wstr"
+                      length="255"
+                      name="Date Hierarchy - QuarterName" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Store]"
+                      dataType="wstr"
+                      length="255"
+                      name="Store" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Year]"
+                      dataType="r8"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Event]"
+                      dataType="wstr"
+                      length="255"
+                      name="Event" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Mandir Group]"
+                      dataType="wstr"
+                      length="255"
+                      name="Mandir Group" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="255"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Category]"
+                      dataType="wstr"
+                      length="255"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Product Category]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product Category" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sum of Quantity]"
+                      dataType="r8"
+                      name="Sum of Quantity" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Month &amp; Year]"
+                      dataType="date"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Month &amp; Year]"
+                      name="Month &amp; Year" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Product]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Product]"
+                      name="Product" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Date Hierarchy - QuarterName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Date Hierarchy - QuarterName]"
+                      name="Date Hierarchy - QuarterName" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Store]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Store]"
+                      name="Store" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Year]"
+                      dataType="r8"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Year]"
+                      name="Year" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Event]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Event]"
+                      name="Event" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Mandir Group]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Mandir Group]"
+                      name="Mandir Group" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Region]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Region]"
+                      name="Region" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Category]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Category]"
+                      name="Category" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Product Category]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Product Category]"
+                      name="Product Category" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Sum of Quantity]"
+                      dataType="r8"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[Sum of Quantity]"
+                      name="Sum of Quantity" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\shayona to db\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[shayona_data]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\shayona to db\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-R91A96N.destination_database]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-R91A96N.destination_database]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Month &amp; Year]"
+                      cachedDataType="date"
+                      cachedName="Month &amp; Year"
+                      externalMetadataColumnId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Month &amp; Year]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Month &amp; Year]" />
+                    <inputColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Product]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Product"
+                      externalMetadataColumnId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Product]" />
+                    <inputColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Date Hierarchy - QuarterName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Date Hierarchy - QuarterName"
+                      externalMetadataColumnId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Date Hierarchy - QuarterName]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Date Hierarchy - QuarterName]" />
+                    <inputColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Store]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Store"
+                      externalMetadataColumnId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Store]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Store]" />
+                    <inputColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Year]"
+                      cachedDataType="r8"
+                      cachedName="Year"
+                      externalMetadataColumnId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Year]" />
+                    <inputColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Mandir Group]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Mandir Group"
+                      externalMetadataColumnId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Mandir Group]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Mandir Group]" />
+                    <inputColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Region]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Region"
+                      externalMetadataColumnId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Region]" />
+                    <inputColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Category]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Category"
+                      externalMetadataColumnId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Category]" />
+                    <inputColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Product Category]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Product Category"
+                      externalMetadataColumnId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product Category]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Product Category]" />
+                    <inputColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Sum of Quantity]"
+                      cachedDataType="r8"
+                      cachedName="Sum of Quantity"
+                      externalMetadataColumnId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sum of Quantity]"
+                      lineageId="Package\shayona to db\Excel Source.Outputs[Excel Source Output].Columns[Sum of Quantity]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Month &amp; Year]"
+                      dataType="dbTimeStamp"
+                      name="Month &amp; Year" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Date Hierarchy - QuarterName]"
+                      dataType="wstr"
+                      length="255"
+                      name="Date Hierarchy - QuarterName" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Store]"
+                      dataType="wstr"
+                      length="255"
+                      name="Store" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      dataType="r8"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Mandir Group]"
+                      dataType="wstr"
+                      length="255"
+                      name="Mandir Group" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="255"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      dataType="wstr"
+                      length="255"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product Category]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product Category" />
+                    <externalMetadataColumn
+                      refId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sum of Quantity]"
+                      dataType="r8"
+                      name="Sum of Quantity" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\shayona to db\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\shayona to db\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\shayona to db\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\shayona to db\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\shayona to db\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\shayona to db.Paths[current month]"
+              endId="Package\shayona to db\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="current month"
+              startId="Package\shayona to db\Conditional Split.Outputs[current month]" />
+            <path
+              refId="Package\shayona to db.Paths[Excel Source Output]"
+              endId="Package\shayona to db\Conditional Split.Inputs[Conditional Split Input]"
+              name="Excel Source Output"
+              startId="Package\shayona to db\Excel Source.Outputs[Excel Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F572EF40-3DE8-4FE7-A09A-29757C138A6A}"
+      DTS:From="Package\delete emp_data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\flat fies to db using union" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{24C72310-1DC4-485B-9724-38BAC15B5E58}"
+      DTS:From="Package\flat fies to db using union"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\chnage ekta to harshil" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{27546FCE-7297-434C-A318-09C90A684457}"
+      DTS:From="Package\chnage ekta to harshil"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\backup package" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{7A1F3530-4AF5-452E-BDC2-D94112C9FBC3}"
+      DTS:From="Package\delete emp_data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Execute Process Task"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{258ABA92-32C4-4075-9C4D-8BD7D8C81B7B}"
+      DTS:From="Package\delete shayona table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\shayona to db" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{C31FB1AA-AAC8-4A19-A454-986CF559495E}"
+      DTS:From="Package\delete emp_data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\delete shayona table"
+      DTS:Value="2" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -1021,150 +1840,268 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="155,42"
-          Id="Package\Data Flow Task"
-          TopLeft="161,126" />
+          Size="148,42"
+          Id="Package\shayona to db"
+          TopLeft="984.5,363.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="1048,145.888888888889">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.5,217.611111111111"
+              Start="0,0"
+              End="10.5,210.111111111111">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,104.805555555556" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,104.805555555556"
+                    Point2="0,108.805555555556"
+                    Point3="4,108.805555555556" />
+                  <mssgle:LineSegment
+                    End="6.5,108.805555555556" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.5,108.805555555556"
+                    Point2="10.5,108.805555555556"
+                    Point3="10.5,112.805555555556" />
+                  <mssgle:LineSegment
+                    End="10.5,210.111111111111" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180,42"
+          Id="Package\delete shayona table"
+          TopLeft="958,103.888888888889" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\flat fies to db using union"
+          TopLeft="230,241" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="500.222222222222,141.222222222222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-170.222222222222,99.7777777777777"
+              Start="0,0"
+              End="-170.222222222222,92.2777777777777">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.50020500205" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.50020500205"
+                    Point2="0,40.50020500205"
+                    Point3="-4,40.50020500205" />
+                  <mssgle:LineSegment
+                    End="-166.222222222222,40.50020500205" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-166.222222222222,40.50020500205"
+                    Point2="-170.222222222222,40.50020500205"
+                    Point3="-170.222222222222,44.50020500205" />
+                  <mssgle:LineSegment
+                    End="-170.222222222222,92.2777777777777" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="330,283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="125.5,73.5"
+              Start="0,0"
+              End="125.5,66">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.75"
+                    Point2="0,36.75"
+                    Point3="4,36.75" />
+                  <mssgle:LineSegment
+                    End="121.5,36.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="121.5,36.75"
+                    Point2="125.5,36.75"
+                    Point3="125.5,40.75" />
+                  <mssgle:LineSegment
+                    End="125.5,66" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="161,42"
+          Id="Package\delete emp_data"
+          TopLeft="445.222222222222,99.2222222222223" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="551.222222222222,141.222222222222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="214.277777777778,160.277777777778"
+              Start="0,0"
+              End="214.277777777778,152.777777777778">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.0574005740057" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,61.0574005740057"
+                    Point2="0,65.0574005740057"
+                    Point3="4,65.0574005740057" />
+                  <mssgle:LineSegment
+                    End="210.277777777778,65.0574005740057" />
+                  <mssgle:CubicBezierSegment
+                    Point1="210.277777777778,65.0574005740057"
+                    Point2="214.277777777778,65.0574005740057"
+                    Point3="214.277777777778,69.0574005740057" />
+                  <mssgle:LineSegment
+                    End="214.277777777778,152.777777777778" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="91.8975412326389,70.0574005740057,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="186,42"
+          Id="Package\chnage ekta to harshil"
+          TopLeft="362.5,356.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="455.5,398.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20,80.5"
+              Start="0,0"
+              End="-20,73">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.25"
+                    Point2="0,40.25"
+                    Point3="-4,40.25" />
+                  <mssgle:LineSegment
+                    End="-16,40.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16,40.25"
+                    Point2="-20,40.25"
+                    Point3="-20,44.25" />
+                  <mssgle:LineSegment
+                    End="-20,73" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="159,42"
+          Id="Package\backup package"
+          TopLeft="356,479" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Execute Process Task"
+          TopLeft="671.5,301.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="606.222222222222,122.555555555556">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="351.777777777778,0"
+              Start="0,0"
+              End="344.277777777778,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="344.277777777778,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="146.834435763889,5,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Data Flow Task">
+    design-time-name="Package\flat fies to db using union">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="156,42"
-          Id="Package\Data Flow Task\Flat File Source"
-          TopLeft="108.5,76.5" />
-        <NodeLayout
-          Size="165,42"
-          Id="Package\Data Flow Task\Flat File Source 1"
-          TopLeft="350,75" />
-        <NodeLayout
-          Size="165,42"
-          Id="Package\Data Flow Task\Flat File Source 2"
-          TopLeft="593,73" />
-        <NodeLayout
           Size="177,42"
-          Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="362,422" />
+          Id="Package\flat fies to db using union\OLE DB Destination"
+          TopLeft="444,415" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\flat fies to db using union\Flat File Source 2"
+          TopLeft="795,81" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\flat fies to db using union\Flat File Source 1"
+          TopLeft="485,74" />
         <NodeLayout
           Size="123,42"
-          Id="Package\Data Flow Task\Union All"
-          TopLeft="421,279" />
+          Id="Package\flat fies to db using union\Union All"
+          TopLeft="461,272" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\flat fies to db using union\Flat File Source"
+          TopLeft="147.5,76.5" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Flat File Source Output]"
-          TopLeft="186.5,118.5">
+          Id="Package\flat fies to db using union.Paths[Union All Output 1]"
+          TopLeft="522.5,314">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="267.25,160.5"
+              EndConnector="10,101"
               Start="0,0"
-              End="267.25,153">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,100.729442970822" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,100.729442970822"
-                    Point2="0,104.729442970822"
-                    Point3="4,104.729442970822" />
-                  <mssgle:LineSegment
-                    End="263.25,104.729442970822" />
-                  <mssgle:CubicBezierSegment
-                    Point1="263.25,104.729442970822"
-                    Point2="267.25,104.729442970822"
-                    Point3="267.25,108.729442970822" />
-                  <mssgle:LineSegment
-                    End="267.25,153" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Flat File Source Output1]"
-          TopLeft="432.5,117">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="50,162"
-              Start="0,0"
-              End="50,154.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,77" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,77"
-                    Point2="0,81"
-                    Point3="4,81" />
-                  <mssgle:LineSegment
-                    End="46,81" />
-                  <mssgle:CubicBezierSegment
-                    Point1="46,81"
-                    Point2="50,81"
-                    Point3="50,85" />
-                  <mssgle:LineSegment
-                    End="50,154.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Flat File Source Output2]"
-          TopLeft="675.5,115">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-164.25,164"
-              Start="0,0"
-              End="-164.25,156.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,103.013262599469" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,103.013262599469"
-                    Point2="0,107.013262599469"
-                    Point3="-4,107.013262599469" />
-                  <mssgle:LineSegment
-                    End="-160.25,107.013262599469" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-160.25,107.013262599469"
-                    Point2="-164.25,107.013262599469"
-                    Point3="-164.25,111.013262599469" />
-                  <mssgle:LineSegment
-                    End="-164.25,156.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Union All Output 1]"
-          TopLeft="482.5,321">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-32,101"
-              Start="0,0"
-              End="-32,93.5">
+              End="10,93.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -1173,15 +2110,117 @@
                   <mssgle:CubicBezierSegment
                     Point1="0,46.5"
                     Point2="0,50.5"
-                    Point3="-4,50.5" />
+                    Point3="4,50.5" />
                   <mssgle:LineSegment
-                    End="-28,50.5" />
+                    End="6,50.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-28,50.5"
-                    Point2="-32,50.5"
-                    Point3="-32,54.5" />
+                    Point1="6,50.5"
+                    Point2="10,50.5"
+                    Point3="10,54.5" />
                   <mssgle:LineSegment
-                    End="-32,93.5" />
+                    End="10,93.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\flat fies to db using union.Paths[Flat File Source Output2]"
+          TopLeft="877.5,123">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-326.25,149"
+              Start="0,0"
+              End="-326.25,141.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,93.2254641909814" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,93.2254641909814"
+                    Point2="0,97.2254641909814"
+                    Point3="-4,97.2254641909814" />
+                  <mssgle:LineSegment
+                    End="-322.25,97.2254641909814" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-322.25,97.2254641909814"
+                    Point2="-326.25,97.2254641909814"
+                    Point3="-326.25,101.225464190981" />
+                  <mssgle:LineSegment
+                    End="-326.25,141.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\flat fies to db using union.Paths[Flat File Source Output1]"
+          TopLeft="567.5,116">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-45,156"
+              Start="0,0"
+              End="-45,148.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,74"
+                    Point2="0,78"
+                    Point3="-4,78" />
+                  <mssgle:LineSegment
+                    End="-41,78" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-41,78"
+                    Point2="-45,78"
+                    Point3="-45,82" />
+                  <mssgle:LineSegment
+                    End="-45,148.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\flat fies to db using union.Paths[Flat File Source Output]"
+          TopLeft="225.5,118.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="268.25,153.5"
+              Start="0,0"
+              End="268.25,146">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,96.1618037135279" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,96.1618037135279"
+                    Point2="0,100.161803713528"
+                    Point3="4,100.161803713528" />
+                  <mssgle:LineSegment
+                    End="264.25,100.161803713528" />
+                  <mssgle:CubicBezierSegment
+                    Point1="264.25,100.161803713528"
+                    Point2="268.25,100.161803713528"
+                    Point3="268.25,104.161803713528" />
+                  <mssgle:LineSegment
+                    End="268.25,146" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1194,7 +2233,123 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    design-time-name="Package\flat fies to db using union\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\shayona to db">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="144,42"
+          Id="Package\shayona to db\Excel Source"
+          TopLeft="396,72" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\shayona to db\OLE DB Destination"
+          TopLeft="483,363" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\shayona to db\Conditional Split"
+          TopLeft="640,181" />
+        <EdgeLayout
+          Id="Package\shayona to db.Paths[Excel Source Output]"
+          TopLeft="468,114">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="251.5,67"
+              Start="0,0"
+              End="251.5,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5"
+                    Point2="0,33.5"
+                    Point3="4,33.5" />
+                  <mssgle:LineSegment
+                    End="247.5,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="247.5,33.5"
+                    Point2="251.5,33.5"
+                    Point3="251.5,37.5" />
+                  <mssgle:LineSegment
+                    End="251.5,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\shayona to db.Paths[current month]"
+          TopLeft="719.5,223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-148,140"
+              Start="0,0"
+              End="-148,132.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,66"
+                    Point2="0,70"
+                    Point3="-4,70" />
+                  <mssgle:LineSegment
+                    End="-144,70" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-144,70"
+                    Point2="-148,70"
+                    Point3="-148,74" />
+                  <mssgle:LineSegment
+                    End="-148,132.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-106.05654296875,75,64.1130859375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\shayona to db\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\shayona to db\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
